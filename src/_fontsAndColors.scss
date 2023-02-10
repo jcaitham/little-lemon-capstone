@@ -1,0 +1,102 @@
+.primaryGreen
+{
+    &.background{
+        background-color: #495E57;
+    }
+
+    &.text{
+        color: #495E57;
+    }
+}
+
+.primaryYellow
+{
+    &.background{
+        background-color: #F4CE14;
+    }
+
+    &.text{
+        color: #F4CE14;
+    }
+}
+
+.highlightWhite
+{
+    
+    &.background{
+        background-color: #EDEFEE;
+    }
+
+    &.text{
+        color: #EDEFEE;
+    }
+}
+
+.secondaryOrange
+{
+    &.background{
+        background-color: #EE9972;
+    }
+
+    &.text{
+        color: #EE9972;
+    }
+}
+
+.secondaryPink
+{
+    
+    &.background{
+        background-color: #FBDABB;
+    }
+
+    &.text{
+        color: #FBDABB;
+    }
+}
+
+p
+{
+    font-family: "Karla", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+h1
+{
+    font-family: 'Markazi Text', 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-size: 64px;
+}
+
+h2
+{
+    font-family: 'Markazi Text', 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+.cta{
+    font-family: "Karla", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.cardTitle{
+    font-family: "Karla", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600
+}
+
+.sectionTitle{
+    font-family: "Karla", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.inputText{
+    font-family: "Karla", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+}

@@ -1,3 +1,249 @@
-.App {
-  text-align: center;
+@charset "UTF-8";
+.primaryGreen.background {
+  background-color: #495E57;
 }
+.primaryGreen.text {
+  color: #495E57;
+}
+
+.primaryYellow.background {
+  background-color: #F4CE14;
+}
+.primaryYellow.text {
+  color: #F4CE14;
+}
+
+.highlightWhite.background {
+  background-color: #EDEFEE;
+}
+.highlightWhite.text {
+  color: #EDEFEE;
+}
+
+.secondaryOrange.background {
+  background-color: #EE9972;
+}
+.secondaryOrange.text {
+  color: #EE9972;
+}
+
+.secondaryPink.background {
+  background-color: #FBDABB;
+}
+.secondaryPink.text {
+  color: #FBDABB;
+}
+
+p {
+  font-family: "Karla", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h1 {
+  font-family: "Markazi Text", "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: 64px;
+}
+
+h2 {
+  font-family: "Markazi Text", "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: 40px;
+}
+
+.cta {
+  font-family: "Karla", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.cardTitle {
+  font-family: "Karla", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sectionTitle {
+  font-family: "Karla", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.inputText {
+  font-family: "Karla", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+#root {
+  min-height: 100vh;
+  display: grid;
+}
+
+.littleLemon {
+  color: #333333;
+  display: flex;
+  flex-direction: column;
+}
+.littleLemon .mainContent {
+  flex-grow: 1;
+}
+.littleLemon .content {
+  width: 980px;
+  margin: 0px 50px;
+}
+.littleLemon .standardTopMargin {
+  margin-top: 75px;
+}
+.littleLemon .backgroundBanner {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.littleLemon .cardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-gap: 40px;
+}
+.littleLemon .shadow {
+  box-shadow: 2px 2px 10px;
+}
+.littleLemon .foodCard .topImg {
+  height: 200px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.littleLemon .foodCard .cardBody {
+  flex: 1;
+}
+.littleLemon .foodCard .bottomHalf {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.littleLemon .testimonialsListWrapper {
+  position: relative;
+  display: flex;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.littleLemon .testimonialsList {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 0;
+  transition: left 0.3s;
+}
+.littleLemon .floatingArrow {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  font-size: 80px;
+  vertical-align: middle;
+  overflow: hidden;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.littleLemon .floatingArrow.disabled {
+  display: none;
+}
+.littleLemon .floatingArrow.left {
+  left: 0;
+  background: rgba(150, 150, 150, 0.8);
+  -webkit-mask-image: -webkit-gradient(linear, center top, right top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+          mask-image: -webkit-gradient(linear, center top, right top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+}
+.littleLemon .floatingArrow.right {
+  right: 0;
+  background: rgba(150, 150, 150, 0.8);
+  -webkit-mask-image: -webkit-gradient(linear, center top, left top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+          mask-image: -webkit-gradient(linear, center top, left top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+}
+.littleLemon .floatingArrow:hover {
+  opacity: 1;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+}
+.littleLemon .floatingArrow .arrow {
+  border: 5px solid darkslategray;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+.littleLemon .floatingArrow .arrow.left {
+  left: 30px;
+}
+.littleLemon .floatingArrow .arrow.right {
+  right: 100px;
+}
+.littleLemon .testimonialCard {
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  padding: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.littleLemon .testimonialCard div {
+  margin-top: 10px;
+}
+.littleLemon .testimonialCard .name {
+  vertical-align: top;
+  padding-left: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 50%;
+}
+.littleLemon .testimonialCard .quote {
+  margin-top: 10px;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  flex: 0;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
+}
+.littleLemon .testimonialCard .quote::before {
+  content: "“";
+}
+.littleLemon .testimonialCard .quote::after {
+  content: "”";
+}
+.littleLemon .toolbar {
+  position: fixed;
+  z-index: 1000;
+  height: 50px;
+  padding: 10px 0px;
+  top: 0;
+  background-color: white;
+  box-shadow: 0px 2px 5px #333333;
+}
+.littleLemon .toolbarLink {
+  text-decoration: none;
+  padding: 20px 0px;
+}
+.littleLemon .toolbarLink:hover {
+  text-decoration: underline;
+  transform: translateY(2px);
+}/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,44 @@
+.primaryGreen.background {
+  background-color: #495E57;
+}
+.primaryGreen.text {
+  color: #495E57;
+}
+
+.primaryYellow.background {
+  background-color: #F4CE14;
+}
+.primaryYellow.text {
+  color: #F4CE14;
+}
+
+.highlightWhite.background {
+  background-color: #EDEFEE;
+}
+.highlightWhite.text {
+  color: #EDEFEE;
+}
+
+p {
+  font-family: "Karla", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h1 {
+  font-family: "Markazi Text", "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: 64px;
+}
+
+h2 {
+  font-family: "Markazi Text", "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: 40px;
+}
+
+.cta {
+  font-family: "Karla", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+}/*# sourceMappingURL=fontsAndColors.css.map */
