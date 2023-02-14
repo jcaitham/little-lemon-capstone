@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import chefImage from "./assets/Mario and Adrian A-min.jpg";
 
@@ -27,7 +27,6 @@ const ReservationConfirmation = () =>
 
 	return (
 		<>
-
 			<section className="primaryGreen backgroundBanner background" style={{ marginBottom: 100 }}>
 				<div className="content standardTopMargin" style={{ display: "flex", gap: 40 }}>
 					<div style={{ flex: 1 }}>

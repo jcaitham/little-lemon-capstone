@@ -4,72 +4,26 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "yup-phone-lite";
 import { useNavigate } from "react-router-dom";
+//import { fetchAPI } from "https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js";
+
+import { fetchAPI } from "./api/api.js";
 
 const Reservations = () => 
 {
+	const today = new Date().toLocaleDateString("en-CA");
 	const partySizes = Array.from(Array(12).keys());
 	const partySizeOptions = partySizes.map(number => <option value={number + 1} key={number}>{number + 1}</option>);
 	const occasionOptions = occasionNames.map(occ => <option value={occ} key={occ}>{occ}</option>);
 
 	const fullReservationDetails = useRef({ date: "", time: "", partySize: "", occasion: "", name: "", phone: "", email: "" });
 
-	const [availableTimes, setAvailableTimes] = useState([]);
+	const [availableTimes, setAvailableTimes] = useState(loadListOfTimes(today));
 	const [currentPage, setCurrentPage] = useState(0);
-
-	const timeOptions = [];
-
-	let time = 500;
-	while (time < 1000)
-	{
-		timeOptions.push(`${Math.floor(time / 100)}:${("" + time).slice(-2)} pm`);
-
-		if (time % 100 === 30)
-		{
-			time += 70;
-		}
-		else
-		{
-			time += 30;
-		}
-	}
-
-	const updateAvailableTimes = (time) =>
-	{
-
-		const newAvailableTimes = [];
-		const split = time.split(":");
-		let numericTime = Number(split[0] + split[1].slice(0, 2));
-
-		const start = numericTime - 100;
-		const end = numericTime + 100;
-
-		numericTime = start;
-
-
-		while (numericTime < end)
-		{
-			if (Math.random() < .5)
-			{
-				newAvailableTimes.push(`${Math.floor(numericTime / 100)}:${("" + numericTime).slice(-2)} pm`);
-			}
-
-			if (numericTime % 100 === 45)
-			{
-				numericTime += 55;
-			}
-			else
-			{
-				numericTime += 15;
-			}
-		}
-		setAvailableTimes(newAvailableTimes);
-	};
 
 	const onSubmitFirstPage = (values) =>
 	{
-		updateAvailableTimes(values.time);
+		setCurrentPage(1);
 		fullReservationDetails.current = { ...fullReservationDetails.current, ...values };
-		fullReservationDetails.current.time = ""; // we need the user to select an available time first
 	};
 
 	const navigate = useNavigate();
@@ -86,17 +40,11 @@ const Reservations = () =>
 		fullReservationDetails.current.time = "";
 	};
 
-	const selectTime = (e) =>
-	{
-		setCurrentPage(1);
-		fullReservationDetails.current.time = e.currentTarget.firstChild.innerHTML;
-	};
-
-	const timeOptionsList = timeOptions.map(time => <option value={time} key={time}>{time}</option>);
+	const timeOptionsList = availableTimes.map(time => <option value={time} key={time}>{time}</option>);
 
 	const firstPageValidationSchema = Yup.object().shape({
 		date: Yup.date().required("A date is required"),
-		time: Yup.string().oneOf(timeOptions, "A time is required"),
+		time: Yup.string().oneOf(availableTimes, "A time is required"),
 		partySize: Yup.number().oneOf(partySizes, "Please select your party's size"),
 		occasion: Yup.string().oneOf(occasionNames, "An occasion is required")
 	});
@@ -117,23 +65,24 @@ const Reservations = () =>
 					</div>
 					<div style={{ display: currentPage === 0 ? "" : "none" }}>
 						<Formik
-							initialValues={{ date: new Date().toLocaleDateString("en-CA"), time: -1, partySize: -1, occasion: -1 }}
+							initialValues={{ date: today, time: -1, partySize: -1, occasion: -1 }}
 							validationSchema={firstPageValidationSchema}
 							onSubmit={values => onSubmitFirstPage(values)}
 							validateOnMount={true}
 						>
 							{(props) =>
 							{
-								return (<Form>
-									<EntryField caption="Date" ghostText={new Date().getDate().toString()} type="date" formikStuff={props.getFieldProps("date")} onChange={() => setAvailableTimes([])} />
-									<OptionDropdown caption="Time" ghostText="Choose a time" options={timeOptionsList} formikStuff={props.getFieldProps("time")} onChange={() => setAvailableTimes([])} />
-									<OptionDropdown caption="Party Size" ghostText="How many people in your group?" options={partySizeOptions} formikStuff={props.getFieldProps("partySize")} onChange={() => setAvailableTimes([])} />
-									<OptionDropdown caption="Occasion" ghostText="What is your occasion?" options={occasionOptions} formikStuff={props.getFieldProps("occasion")} onChange={() => setAvailableTimes([])} />
-									<button type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Search</span></button>
-								</Form>);
+								return (
+									<Form>
+										<EntryField caption="Date" ghostText={new Date().getDate().toString()} type="date" formikStuff={props.getFieldProps("date")} onChange={(e) => { props.setFieldValue("time", -1); setAvailableTimes(loadListOfTimes(e.currentTarget.value)); }} />
+										<OptionDropdown caption="Time" ghostText="Choose a time" options={timeOptionsList} formikStuff={props.getFieldProps("time")} />
+										<OptionDropdown caption="Party Size" ghostText="How many people in your group?" options={partySizeOptions} formikStuff={props.getFieldProps("partySize")} />
+										<OptionDropdown caption="Occasion" ghostText="What is your occasion?" options={occasionOptions} formikStuff={props.getFieldProps("occasion")} />
+										<button type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Search</span></button>
+									</Form>
+								);
 							}}
 						</Formik>
-						<SearchResultList availableTimes={availableTimes} onClick={selectTime}></SearchResultList>
 					</div>
 					<div style={{ display: currentPage === 0 ? "none" : "" }}>
 						<Formik
@@ -157,6 +106,12 @@ const Reservations = () =>
 			</div>
 		</section>
 	);
+};
+
+const loadListOfTimes = (date) =>
+{
+	console.log("recalculating time options with date of " + date);
+	return fetchAPI(new Date(date));  // api secretly expects a Date object
 };
 
 const Tab = ({ isActive, isClickable, caption, onClick }) =>
@@ -184,7 +139,7 @@ const EntryField = ({ caption, ghostText, type, onChange, formikStuff }) =>
 					{caption}
 				</h2>
 			</label>
-			<Field type={type} min={type === "date" && new Date().toLocaleDateString("en-CA")} placeholder={ghostText} className="highlightWhite background inputText" {...formikStuff} onChange={e => { formikStuff.onChange(e); onChange && onChange(); }} innerRef={inputRef}></Field>
+			<Field type={type} min={type === "date" ? new Date().toLocaleDateString("en-CA") : undefined} placeholder={ghostText} className="highlightWhite background inputText" {...formikStuff} onChange={e => { formikStuff.onChange(e); onChange && onChange(e); }} innerRef={inputRef}></Field>
 			<span className="errorMessage cta secondaryOrange text">
 				<ErrorMessage name={formikStuff.name} />
 				&nbsp;
@@ -210,15 +165,6 @@ const OptionDropdown = ({ caption, ghostText, options, formikStuff, onChange }) 
 				<ErrorMessage name={formikStuff.name} />
 				&nbsp;
 			</span>
-		</div>
-	);
-};
-
-const SearchResultList = ({ availableTimes, onClick }) =>
-{
-	return (
-		<div style={{ display: "flex", gap: 15, padding: 15 }}>
-			{availableTimes.map(time => <div className="primaryYellow background shadow timeResult" key={time} onClick={e => onClick(e)}><span className="cta" style={{ fontWeight: 600 }}>{time}</span></div>)}
 		</div>
 	);
 };
