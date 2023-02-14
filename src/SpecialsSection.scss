@@ -1,44 +1,41 @@
 @use "./colorVariables";
 
-@media (min-width: colorVariables.$mobileCutoff)
-{
-    .cardList{
+@media (min-width: colorVariables.$mobileCutoff) {
+	.cardList {
 
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 40px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 40px;
 
-    }
+	}
 }
 
-@media (max-width: colorVariables.$mobileCutoff){
-    .cardList{
+@media (max-width: colorVariables.$mobileCutoff) {
+	.cardList {
 
-        display: flex;
-        gap: 40px;
-        flex-wrap:wrap;
-        justify-content: center;
-    }
+		display: flex;
+		gap: 40px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 }
 
 
-.foodCard
-{
-    .topImg{
-        height: 200px;
-        width: 100%;
-        object-fit: cover
-    }
+.foodCard {
+	.topImg {
+		min-height: 200px;
+		width: 100%;
+		object-fit: cover
+	}
 
-    .cardBody{
-        flex: 1;
-    }
+	.cardBody {
+		flex: 1;
+	}
 
-    .bottomHalf{
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
+	.bottomHalf {
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
 }
-

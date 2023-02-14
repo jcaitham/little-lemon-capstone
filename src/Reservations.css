@@ -74,7 +74,8 @@
   width: 100%;
   margin-bottom: 10px;
 }
-.reservationsCard .entryField input, .reservationsCard .entryField select {
+.reservationsCard .entryField input,
+.reservationsCard .entryField select {
   width: 100%;
   height: 64px;
   border-radius: 16px;
@@ -92,17 +93,20 @@
   font-style: italic;
   padding-left: 5px;
 }
-.reservationsCard .entryField input::placeholder, .reservationsCard .entryField select::placeholder {
+.reservationsCard .entryField input::placeholder,
+.reservationsCard .entryField select::placeholder {
   font-style: italic;
   padding-left: 5px;
 }
-.reservationsCard .entryField input[type=time]::-webkit-calendar-picker-indicator, .reservationsCard .entryField select[type=time]::-webkit-calendar-picker-indicator {
+.reservationsCard .entryField input[type=time]::-webkit-calendar-picker-indicator,
+.reservationsCard .entryField select[type=time]::-webkit-calendar-picker-indicator {
   background-size: 40px;
   width: 40px;
   height: 40px;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="%23495E57"><circle cy="12" cx="12" r="10" fill="none" stroke-width="2"/><line x1="12" x2="12" y1="12" y2="6" stroke-width="2" stroke-linecap="round"></line><line x1="12" x2="16" y1="12" y2="16" stroke-width="2" stroke-linecap="round"></line></svg>');
 }
-.reservationsCard .entryField input[type=date]::-webkit-calendar-picker-indicator, .reservationsCard .entryField select[type=date]::-webkit-calendar-picker-indicator {
+.reservationsCard .entryField input[type=date]::-webkit-calendar-picker-indicator,
+.reservationsCard .entryField select[type=date]::-webkit-calendar-picker-indicator {
   background-size: 40px;
   width: 40px;
   height: 40px;

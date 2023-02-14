@@ -10,24 +10,12 @@ import "./TestimonialsSection.css";
 const TestimonialsSection = () =>
 {
 
-	const listGap = 20;
-
-	const [cardWidth, setCardWidth] = useState(0);
-
-	const containerRef = useRef(null);
-
-	const getcontainerSize = useEffect(() =>
-	{
-		const width = containerRef.current.clientWidth - (3 * listGap) - 20;
-
-		setCardWidth(Math.max(230, width / 4));
-	}, []);
 
 	return (
 		<section className="backgroundBanner primaryGreen background">
-			<div className="content standardTopMargin" ref={containerRef} style={{ marginBottom: 75 }}>
+			<div className="content standardTopMargin" style={{ marginBottom: 75 }}>
 				<h1 className="highlightWhite text" style={{ display: "block" }}>Testimonials</h1>
-				<TestimonialsList listGap={listGap} cardWidth={cardWidth} />
+				<TestimonialsList />
 			</div>
 		</section>
 	);
@@ -36,48 +24,80 @@ const TestimonialsSection = () =>
 const TestimonialCard = ({ name, score, imgSrc, comment, style }) =>
 {
 	return (
-		<div className="highlightWhite background testimonialCard shadow" style={{ ...style }}>
+		<article className="highlightWhite background testimonialCard shadow" style={{ ...style }}>
 			<span className="cardTitle">{score}</span>
-			<div >
-				<img src={imgSrc} style={{ width: "50%", aspectRatio: "1/1", objectFit: "cover" }} />
+			<div style={{ display: "flex" }}>
+				<img src={imgSrc} style={{ width: "50%", aspectRatio: "1/1", objectFit: "cover" }} title="The reviewer's profile picture" />
 				<span className="cardTitle name">{name}</span>
 			</div>
 			<q className="quote">
 				{comment}
 			</q>
-		</div>
+		</article>
 	);
 };
 
-const TestimonialsList = ({ listGap, cardWidth }) =>
+const TestimonialsList = () =>
 {
-	const [cardsToLeft, setCardsToLeft] = useState(0);
-	const [cardsToRight, setCardsToRight] = useState(Math.max(reviews.length - 4, 0));
+	const data = useRef({ cardWidth: 0, totalWidth: 0, distancePerScroll: 0, windowWidth: 0 });
+
+	const [contentRemainingToLeft, setContentRemainingToLeft] = useState(0);
+	const [contentRemainingToRight, setContentRemainingToRight] = useState(0);
 
 	const [scrollOffset, setScrollOffset] = useState(0);
 
 
+	const listGap = 20;
+	const containerRef = useRef(null);
+
+	const onMountAndResize = () => 
+	{
+		const windowWidth = containerRef.current.clientWidth;
+
+		const cardWidth = Math.max(230, windowWidth / 4);
+
+		const totalWidth = reviews.length * (cardWidth + listGap);
+
+		setContentRemainingToRight(totalWidth - windowWidth);
+		setContentRemainingToLeft(0);
+		setScrollOffset(0);
+		const distancePerScroll = totalWidth / reviews.length;
+
+		data.current = { cardWidth, totalWidth, distancePerScroll, windowWidth };
+	};
+
+
+	const resizeHandler = useEffect(() =>
+	{
+		onMountAndResize();
+
+		window.addEventListener("resize", onMountAndResize);
+
+		return () => window.removeEventListener("resize", onMountAndResize);
+	}, []);
+
+
 	const incrementScroll = () =>
 	{
-		setScrollOffset(scrollOffset + listGap + cardWidth);
-		setCardsToLeft(cardsToLeft + 1);
-		setCardsToRight(cardsToRight - 1);
+		setScrollOffset(Math.min(data.current.totalWidth - data.current.windowWidth, scrollOffset + data.current.distancePerScroll));
+		setContentRemainingToRight(contentRemainingToRight - data.current.distancePerScroll);
+		setContentRemainingToLeft(contentRemainingToLeft + data.current.distancePerScroll);
 	};
 
 	const decrementScroll = () =>
 	{
-		setScrollOffset(scrollOffset - listGap - cardWidth);
-		setCardsToLeft(cardsToLeft - 1);
-		setCardsToRight(cardsToRight + 1);
+		setScrollOffset(Math.max(0, scrollOffset - data.current.distancePerScroll));
+		setContentRemainingToLeft(contentRemainingToLeft - data.current.distancePerScroll);
+		setContentRemainingToRight(contentRemainingToRight + data.current.distancePerScroll);
 	};
 
 	return (
-		<div className="testimonialsListWrapper">
+		<div className="testimonialsListWrapper" ref={containerRef}>
 			<div className="testimonialsList" style={{ gap: listGap, left: (-scrollOffset + "px") }}>
-				{reviews.map((review, index) => <TestimonialCard {...review} key={index} style={{ width: cardWidth + "px" }} />)}
+				{reviews.map((review, index) => <TestimonialCard {...review} key={index} style={{ width: data.current.cardWidth + "px" }} />)}
 			</div>
-			<div className={"floatingArrow left" + (cardsToLeft === 0 ? " disabled" : "")} onClick={decrementScroll}><div className="arrow left"></div></div>
-			<div className={"floatingArrow right" + (cardsToRight === 0 ? " disabled" : "")} onClick={incrementScroll}><div className="arrow right"></div></div>
+			<div className={"floatingArrow left" + (contentRemainingToLeft <= 0 ? " disabled" : "")} onClick={decrementScroll}><div className="arrow left"></div></div>
+			<div className={"floatingArrow right" + (contentRemainingToRight <= 0 ? " disabled" : "")} onClick={incrementScroll}><div className="arrow right"></div></div>
 		</div>
 	);
 };

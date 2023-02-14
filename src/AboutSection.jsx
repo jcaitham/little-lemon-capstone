@@ -22,10 +22,10 @@ const AboutSection = () =>
 				</div>
 				<div style={{ flex: 1, position: "relative" }}>
 					<div style={{ position: "relative", borderRadius: 16, overflow: "hidden", width: "50%", aspectRatio: "1/1", transform: "translateY(60%) translateX(90%)" }} className="shadow">
-						<img src={chefImg2} height="100%" style={{ right: 0, position: "absolute" }} />
+						<img src={chefImg2} height="100%" style={{ right: 0, position: "absolute" }} alt="2 chefs having fun cooking together" />
 					</div>
 					<div style={{ position: "relative", borderRadius: 16, overflow: "hidden", width: "50%", aspectRatio: "1/1", transform: "translateY(-100%) translateX(10%)" }} className="shadow">
-						<img src={chefImg1} height="100%" style={{ transform: "translateX(-50%)", left: "50%", position: "absolute" }} />
+						<img src={chefImg1} height="100%" style={{ transform: "translateX(-50%)", left: "50%", position: "absolute" }} alt="A chef putting the finishing touches on a salad" />
 					</div>
 				</div>
 			</div>

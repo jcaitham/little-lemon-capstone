@@ -34,7 +34,7 @@ const LinkList = ({ header, links }) =>
 				<span className="sectionTitle">
 					{header}
 				</span>
-				<div className={`dropdownIcon ${expanded ? "" : "flipped"}`}>
+				<div className={`dropdownIcon ${expanded ? "flipped" : ""}`}>
 
 				</div>
 			</div>
