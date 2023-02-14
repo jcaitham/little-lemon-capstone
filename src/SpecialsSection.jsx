@@ -2,6 +2,7 @@ import basketImage from "./assets/Basket.svg";
 import greekSaladImg from "./assets/greek salad-min.jpg";
 import bruchettaImg from "./assets/bruchetta-min.png";
 import lemonDessertImg from "./assets/lemon dessert.jpg";
+import "./SpecialsSection.css";
 
 const SpecialsSection = () =>
 {
@@ -25,11 +26,11 @@ const SpecialsSection = () =>
 const Button = ({ width, height, text }) =>
 {
 	return (
-		<div className="primaryYellow background button" style={{ borderRadius: "16px", display: "flex", justifyContent: "center", alignItems: "center", height: height + "px", width: width + "px", cursor: "pointer" }}>
+		<button aria-label={"Click to visit " + text} className="primaryYellow background button shadow" style={{ border: "none", borderRadius: "16px", display: "flex", justifyContent: "center", alignItems: "center", height: height + "px", width: width + "px", cursor: "pointer" }}>
 			<span className="cta">
 				{text}
 			</span>
-		</div>
+		</button>
 	);
 };
 
@@ -46,7 +47,7 @@ const FoodCard = ({ title, text, price, imgSrc, style }) =>
 				<p className="cardBody">
 					{text}
 				</p>
-				<div className="cta" style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+				<div className="cta" style={{ display: "flex", alignItems: "center", cursor: "pointer" }} aria-label={`Click to add ${title} to your cart`} tabIndex="0">
 					<span>Add to cart</span>
 					<img src={basketImage} height="25" style={{ marginLeft: "20px" }} />
 				</div>

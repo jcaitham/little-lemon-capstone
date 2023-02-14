@@ -1,0 +1,5 @@
+.highlightedText {
+	&::before {
+		content: ' ';
+	}
+}

@@ -4,9 +4,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "yup-phone-lite";
 import { useNavigate } from "react-router-dom";
-//import { fetchAPI } from "https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js";
 
-import { fetchAPI } from "./api/api.js";
+import { fetchAPI, submitAPI } from "./api/api.js";
 
 const Reservations = () => 
 {
@@ -31,7 +30,10 @@ const Reservations = () =>
 	const onSubmitSecondPage = (values) =>
 	{
 		fullReservationDetails.current = { ...fullReservationDetails.current, ...values };
-		navigate("/reservationConfirmation", { state: { ...fullReservationDetails } });
+		if (submitAPI(fullReservationDetails))
+		{
+			navigate("/reservationConfirmation", { state: { ...fullReservationDetails } });
+		}
 	};
 
 	const returnToFirstPage = () =>
@@ -78,7 +80,7 @@ const Reservations = () =>
 										<OptionDropdown caption="Time" ghostText="Choose a time" options={timeOptionsList} formikStuff={props.getFieldProps("time")} />
 										<OptionDropdown caption="Party Size" ghostText="How many people in your group?" options={partySizeOptions} formikStuff={props.getFieldProps("partySize")} />
 										<OptionDropdown caption="Occasion" ghostText="What is your occasion?" options={occasionOptions} formikStuff={props.getFieldProps("occasion")} />
-										<button type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Search</span></button>
+										<button aria-label="Click to continue with your reservation" type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Continue</span></button>
 									</Form>
 								);
 							}}
@@ -97,7 +99,7 @@ const Reservations = () =>
 									<EntryField caption="Name" ghostText={"Jane Doe"} type="text" formikStuff={props.getFieldProps("name")} />
 									<EntryField caption="E-mail" ghostText="jane@example.com" type="email" formikStuff={props.getFieldProps("email")} />
 									<EntryField caption="Phone" ghostText="Phone Number" type="tel" formikStuff={props.getFieldProps("phone")} />
-									<button type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Confirm Reservation</span></button>
+									<button aria-label="Click to submit and finalize your reservation" type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Confirm Reservation</span></button>
 								</Form>);
 							}}
 						</Formik>
@@ -110,17 +112,17 @@ const Reservations = () =>
 
 const loadListOfTimes = (date) =>
 {
-	console.log("recalculating time options with date of " + date);
 	return fetchAPI(new Date(date));  // api secretly expects a Date object
 };
 
 const Tab = ({ isActive, isClickable, caption, onClick }) =>
 {
 	const backgroundStyles = `${isActive ? "primaryYellow active" : "primaryGreen inactive"} ${isClickable === false ? "noClick" : "clickable"}`;
+	const tabIndex = `${isClickable ? "0" : "-1"}`;
 	const textStyles = `${isActive ? "primaryGreen" : "highlightWhite"}`;
 
 	return (
-		<div className={`tab sectionTitle background ${backgroundStyles}`} onClick={onClick}>
+		<div className={`tab sectionTitle background ${backgroundStyles}`} onClick={onClick} tabIndex={tabIndex}>
 			<span className={`sectionTitle text ${textStyles}`}>
 				{caption}
 			</span>
@@ -130,8 +132,6 @@ const Tab = ({ isActive, isClickable, caption, onClick }) =>
 
 const EntryField = ({ caption, ghostText, type, onChange, formikStuff }) =>
 {
-	const inputRef = useRef(null);
-
 	return (
 		<div className="entryField">
 			<label htmlFor={formikStuff.name}>
@@ -139,7 +139,7 @@ const EntryField = ({ caption, ghostText, type, onChange, formikStuff }) =>
 					{caption}
 				</h2>
 			</label>
-			<Field type={type} min={type === "date" ? new Date().toLocaleDateString("en-CA") : undefined} placeholder={ghostText} className="highlightWhite background inputText" {...formikStuff} onChange={e => { formikStuff.onChange(e); onChange && onChange(e); }} innerRef={inputRef}></Field>
+			<Field type={type} min={type === "date" ? new Date().toLocaleDateString("en-CA") : undefined} placeholder={ghostText} className="highlightWhite background inputText" {...formikStuff} onChange={e => { formikStuff.onChange(e); onChange && onChange(e); }}></Field>
 			<span className="errorMessage cta secondaryOrange text">
 				<ErrorMessage name={formikStuff.name} />
 				&nbsp;

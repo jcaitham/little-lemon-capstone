@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import Reservations from "./Reservations";
+import { ReservationsPage } from "./ReservationsPage";
 import React from "react";
 import ReservationConfirmation from './ReservationConfirmation';
 import { Toolbar } from "./Toolbar";
@@ -23,7 +23,7 @@ const App = () =>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />
-					<Route path="/reservations" element={<Reservations />} />
+					<Route path="/reservations" element={<ReservationsPage />} />
 					<Route path="/reservationConfirmation" element={<ReservationConfirmation />} />
 				</Routes>
 			</main>
