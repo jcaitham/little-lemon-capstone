@@ -1,0 +1,108 @@
+@charset "UTF-8";
+.testimonialsListWrapper {
+  position: relative;
+  display: flex;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.testimonialsList {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 0;
+  transition: left 0.3s;
+}
+
+.floatingArrow {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  font-size: 80px;
+  vertical-align: middle;
+  overflow: hidden;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.floatingArrow.disabled {
+  display: none;
+}
+.floatingArrow.left {
+  left: 0;
+  background: rgba(150, 150, 150, 0.8);
+  -webkit-mask-image: -webkit-gradient(linear, center top, right top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+          mask-image: -webkit-gradient(linear, center top, right top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+}
+.floatingArrow.right {
+  right: 0;
+  background: rgba(150, 150, 150, 0.8);
+  -webkit-mask-image: -webkit-gradient(linear, center top, left top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+          mask-image: -webkit-gradient(linear, center top, left top, from(rgba(255, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+}
+.floatingArrow:hover {
+  opacity: 1;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+}
+.floatingArrow .arrow {
+  border: 5px solid darkslategray;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+.floatingArrow .arrow.left {
+  left: 30px;
+}
+.floatingArrow .arrow.right {
+  right: 100px;
+}
+
+.testimonialCard {
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  padding: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.testimonialCard div {
+  margin-top: 10px;
+}
+.testimonialCard .name {
+  vertical-align: top;
+  padding-left: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 50%;
+}
+.testimonialCard .quote {
+  margin-top: 10px;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  flex: 0;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
+}
+.testimonialCard .quote::before {
+  content: "“";
+}
+.testimonialCard .quote::after {
+  content: "”";
+}/*# sourceMappingURL=TestimonialsSection.css.map */

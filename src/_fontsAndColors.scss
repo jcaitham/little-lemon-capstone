@@ -1,105 +1,99 @@
 @use "./colorVariables";
 
-.primaryGreen
-{
-    &.background{
-        background-color: colorVariables.$primaryGreen;
-    }
+.primaryGreen {
+	&.background {
+		background-color: colorVariables.$primaryGreen;
+	}
 
-    &.text{
-        color: colorVariables.$primaryGreen;
-    }
+	&.text {
+		color: colorVariables.$primaryGreen;
+	}
 }
 
-.primaryYellow
-{
-    &.background{
-        background-color: colorVariables.$primaryYellow;
-    }
+.primaryYellow {
+	&.background {
+		background-color: colorVariables.$primaryYellow;
+	}
 
-    &.text{
-        color: colorVariables.$primaryYellow;
-    }
+	&.text {
+		color: colorVariables.$primaryYellow;
+	}
 }
 
-.highlightWhite
-{
-    
-    &.background{
-        background-color: colorVariables.$highlightWhite;
-    }
+.highlightWhite {
 
-    &.text{
-        color: colorVariables.$highlightWhite;
-    }
+	&.background {
+		background-color: colorVariables.$highlightWhite;
+	}
+
+	&.text {
+		color: colorVariables.$highlightWhite;
+	}
 }
 
-.secondaryOrange
-{
-    &.background{
-        background-color: colorVariables.$secondaryOrange;
-    }
+.secondaryOrange {
+	&.background {
+		background-color: colorVariables.$secondaryOrange;
+	}
 
-    &.text{
-        color: colorVariables.$secondaryOrange;
-    }
+	&.text {
+		color: colorVariables.$secondaryOrange;
+	}
 }
 
-.secondaryPink
-{
-    
-    &.background{
-        background-color: colorVariables.$secondaryPink;
-    }
+.secondaryPink {
 
-    &.text{
-        color: colorVariables.$secondaryPink;
-    }
+	&.background {
+		background-color: colorVariables.$secondaryPink;
+	}
+
+	&.text {
+		color: colorVariables.$secondaryPink;
+	}
 }
 
-p, q
-{
-    font-family: "Karla", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
+p,
+q {
+	font-family: "Karla", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	line-height: 24px;
 }
 
-h1
-{
-    font-family: 'Markazi Text', 'Times New Roman', Times, serif;
-    font-weight: 500;
-    font-size: 64px;
-    margin:0px;
+h1 {
+	font-family: 'Markazi Text', 'Times New Roman', Times, serif;
+	font-weight: 500;
+	font-size: 64px;
+	margin: 0px;
 }
 
-h2, .headerMedium
-{
-    font-family: 'Markazi Text', 'Times New Roman', Times, serif;
-    font-weight: 400;
-    font-size: 40px;
+h2,
+.headerMedium {
+	font-family: 'Markazi Text', 'Times New Roman', Times, serif;
+	font-weight: 400;
+	font-size: 40px;
 }
 
-.cta{
-    font-family: "Karla", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 18px;
+.cta {
+	font-family: "Karla", Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	font-size: 18px;
 }
 
-.cardTitle{
-    font-family: "Karla", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: 600
+.cardTitle {
+	font-family: "Karla", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 600
 }
 
-.sectionTitle{
-    font-family: "Karla", Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    text-transform: uppercase;
+.sectionTitle {
+	font-family: "Karla", Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: 800;
+	text-transform: uppercase;
 }
 
-.inputText{
-    font-family: "Karla", Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    font-weight: 300;
+.inputText {
+	font-family: "Karla", Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: 300;
 }

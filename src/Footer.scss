@@ -1,89 +1,89 @@
 @use "./colorVariables";
 
-.footerWrapper{
-    display: flex;
-    padding: 10px 0px;
-    justify-content: space-between;
-    margin: 20px 0px;
+.footerWrapper {
+	display: flex;
+	padding: 10px 0px;
+	justify-content: space-between;
+	margin: 20px 0px;
 }
 
-.titleWrapper{
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
+.titleWrapper {
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
 }
 
-.linkList{
-    display: flex;
-    flex-direction: column;
-    padding-left: 5px;
-    
-}
-
-.dropdownIcon{
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="%23333333"><line x1="12" x2="20" y1="16" y2="8" stroke-width="2" stroke-linecap="round"></line><line x1="12" x2="4" y1="16" y2="8" stroke-width="2" stroke-linecap="round"></line></svg>');
-    aspect-ratio: 1/1;
-    height: 30px;
-    width: 30px;
-    transition: transform .2s;
-
-    &.flipped{
-        transform: rotate(180deg) translateX(-2px);
-    }
-}
-
-@media (max-width: colorVariables.$mobileCutoff){
-
-    .titleWrapper{
-        border-bottom: 1px solid colorVariables.$secondaryOrange;
-        padding: 20px 0px;
-    }
-
-    .desktopImg{
-        display: none;
-    }
-
-    .mobileImg{
-        display: block;
-    }
-
-    .dropdownIcon{
-        display: block;
-    }
-
-    .linkList{
-        align-items: center;
-        overflow: hidden;
-        transition: all .2s;
-        margin-top: 10px;
-        gap: 5px;
-        &.expanded{
-            transform: scaleY(1);
-            max-height: 200px;
-            
-        }
-
-        &.collapsed{
-            transform: scaleY(0);
-            max-height: 0px;
-        }
-    }
+.linkList {
+	display: flex;
+	flex-direction: column;
+	padding-left: 5px;
 
 }
 
-@media (min-width: colorVariables.$mobileCutoff){
+.dropdownIcon {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="%23333333"><line x1="12" x2="20" y1="16" y2="8" stroke-width="2" stroke-linecap="round"></line><line x1="12" x2="4" y1="16" y2="8" stroke-width="2" stroke-linecap="round"></line></svg>');
+	aspect-ratio: 1/1;
+	height: 30px;
+	width: 30px;
+	transition: transform .2s;
 
-    .desktopImg{
-        display: block;
-    }
+	&.flipped {
+		transform: rotate(180deg) translateX(-2px);
+	}
+}
 
-    .mobileImg{
-        display: none;
-    }
+@media (max-width: colorVariables.$mobileCutoff) {
 
-    .dropdownIcon
-    {
-        display: none;
-    }
-    
+	.titleWrapper {
+		border-bottom: 1px solid colorVariables.$secondaryOrange;
+		padding: 20px 0px;
+	}
+
+	.desktopImg {
+		display: none;
+	}
+
+	.mobileImg {
+		display: block;
+	}
+
+	.dropdownIcon {
+		display: block;
+	}
+
+	.linkList {
+		align-items: center;
+		overflow: hidden;
+		transition: all .2s;
+		margin-top: 10px;
+		gap: 5px;
+
+		&.expanded {
+			transform: scaleY(1);
+			max-height: 200px;
+
+		}
+
+		&.collapsed {
+			transform: scaleY(0);
+			max-height: 0px;
+		}
+	}
+
+}
+
+@media (min-width: colorVariables.$mobileCutoff) {
+
+	.desktopImg {
+		display: block;
+	}
+
+	.mobileImg {
+		display: none;
+	}
+
+	.dropdownIcon {
+		display: none;
+	}
+
 }

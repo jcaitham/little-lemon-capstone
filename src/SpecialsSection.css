@@ -1,0 +1,30 @@
+@media (min-width: 1000px) {
+  .cardList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+  }
+}
+@media (max-width: 1000px) {
+  .cardList {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.foodCard .topImg {
+  height: 200px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.foodCard .cardBody {
+  flex: 1;
+}
+.foodCard .bottomHalf {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}/*# sourceMappingURL=SpecialsSection.css.map */
