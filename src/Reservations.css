@@ -1,10 +1,74 @@
 .reservationsCard {
-  margin: 50px;
+  width: 100%;
+  margin-bottom: 50px;
   border-radius: 16px;
+  box-sizing: border-box;
+  padding: 0px 20px 20px 20px;
+}
+.reservationsCard h2 {
+  margin: 0px;
+}
+.reservationsCard .tabRow {
+  display: flex;
+}
+.reservationsCard .tabRow .tab {
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+.reservationsCard .tabRow .tab.inactive {
+  border: 1px solid #F4CE14;
+}
+.reservationsCard .tabRow .tab.noClick {
+  pointer-events: none;
+}
+.reservationsCard .tabRow .tab.clickable {
+  cursor: pointer;
+}
+.reservationsCard .errorMessage {
+  margin-top: 5px;
+  padding-left: 20px;
+  display: block;
+}
+.reservationsCard .timeResult {
+  border-radius: 8px;
+  padding: 5px 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.reservationsCard .timeResult:hover {
+  transform: translate(2px, 2px);
+}
+.reservationsCard .submitButton {
+  width: 100%;
   padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 16px;
+  margin-top: 20px;
+}
+.reservationsCard .submitButton.active {
+  cursor: pointer;
+}
+.reservationsCard .submitButton.active:hover {
+  transform: translate(2px, 2px);
+}
+.reservationsCard .submitButton.active:active {
+  box-shadow: none;
+  transform: translateY(2px) translateX(2px);
+}
+.reservationsCard .submitButton.inactive {
+  opacity: 0.5;
 }
 .reservationsCard .entryField {
   width: 100%;
+  margin-top: 15px;
 }
 .reservationsCard .entryField .caption {
   width: 100%;
@@ -19,6 +83,18 @@
   color: inherit;
   padding: 0px 20px;
   box-sizing: border-box;
+}
+.reservationsCard .entryField input::-moz-placeholder, .reservationsCard .entryField select::-moz-placeholder {
+  font-style: italic;
+  padding-left: 5px;
+}
+.reservationsCard .entryField input:-ms-input-placeholder, .reservationsCard .entryField select:-ms-input-placeholder {
+  font-style: italic;
+  padding-left: 5px;
+}
+.reservationsCard .entryField input::placeholder, .reservationsCard .entryField select::placeholder {
+  font-style: italic;
+  padding-left: 5px;
 }
 .reservationsCard .entryField input[type=time]::-webkit-calendar-picker-indicator, .reservationsCard .entryField select[type=time]::-webkit-calendar-picker-indicator {
   background-size: 40px;

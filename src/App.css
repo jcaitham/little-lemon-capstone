@@ -34,7 +34,7 @@
   color: #FBDABB;
 }
 
-p {
+p, q {
   font-family: "Karla", Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -44,9 +44,10 @@ h1 {
   font-family: "Markazi Text", "Times New Roman", Times, serif;
   font-weight: 500;
   font-size: 64px;
+  margin: 0px;
 }
 
-h2 {
+h2, .headerMedium {
   font-family: "Markazi Text", "Times New Roman", Times, serif;
   font-weight: 400;
   font-size: 40px;
@@ -77,22 +78,56 @@ h2 {
   font-weight: 300;
 }
 
-#root {
+.littleLemon {
   min-height: 100vh;
   display: grid;
-}
-
-.littleLemon {
+  grid-template-rows: 70px 1fr auto;
+  grid-template-columns: 100%;
+  max-width: 100%;
   color: #333333;
-  display: flex;
-  flex-direction: column;
 }
 .littleLemon .mainContent {
   flex-grow: 1;
 }
 .littleLemon .content {
-  width: 980px;
-  margin: 0px 50px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+@media (min-width: 1000px) {
+  .littleLemon .content {
+    width: 1000px;
+    box-sizing: border-box;
+    padding: 0px 50px;
+  }
+  .littleLemon .contentStack {
+    display: flex;
+    flex-direction: row;
+  }
+  .littleLemon .cardList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+  }
+}
+@media (max-width: 1000px) {
+  .littleLemon .contentStack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+  .littleLemon .content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 0px 10px;
+  }
+  .littleLemon .cardList {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 .littleLemon .standardTopMargin {
   margin-top: 75px;
@@ -102,11 +137,6 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-.littleLemon .cardList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
-  grid-gap: 40px;
 }
 .littleLemon .shadow {
   box-shadow: 2px 2px 10px;
@@ -229,21 +259,4 @@ h2 {
 }
 .littleLemon .testimonialCard .quote::after {
   content: "”";
-}
-.littleLemon .toolbar {
-  position: fixed;
-  z-index: 1000;
-  height: 50px;
-  padding: 10px 0px;
-  top: 0;
-  background-color: white;
-  box-shadow: 0px 2px 5px #333333;
-}
-.littleLemon .toolbarLink {
-  text-decoration: none;
-  padding: 20px 0px;
-}
-.littleLemon .toolbarLink:hover {
-  text-decoration: underline;
-  transform: translateY(2px);
 }/*# sourceMappingURL=App.css.map */

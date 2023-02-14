@@ -1,0 +1,106 @@
+.toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 0px;
+  background-color: white;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 5px #333333;
+}
+
+.toolbarLink {
+  text-decoration: none;
+  padding: 20px 0px;
+}
+.toolbarLink:hover {
+  text-decoration: underline;
+  transform: translateY(2px);
+}
+
+@media (max-width: 1000px) {
+  .linkWrapper {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    height: 30px;
+    aspect-ratio: 1/1;
+    position: relative;
+    justify-self: flex-end;
+    transform: rotate(0);
+    transition: transform 0.5s;
+    cursor: pointer;
+  }
+  .hamburger.flipped .hamburgerLine::before {
+    transform: rotate(45deg) translateY(-3.5px);
+  }
+  .hamburger.flipped .hamburgerLine::after {
+    transform: rotate(-45deg) translateY(3.5px);
+  }
+  .hamburger.flipped .hamburgerLine {
+    background-color: white;
+  }
+  .hamburger .hamburgerLine, .hamburger .hamburgerLine::before, .hamburger .hamburgerLine::after {
+    width: 100%;
+    height: 4px;
+    border-radius: 50px;
+    background-color: #495E57;
+    display: block;
+    content: "";
+    transition: all 0.5s;
+    transform-origin: 0%;
+  }
+  .hamburger .hamburgerLine::before {
+    margin-top: -8px;
+  }
+  .hamburger .hamburgerLine::after {
+    margin-top: 12px;
+  }
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+  }
+  .dropdown.visible .dropdownItem {
+    visibility: visible;
+    border-bottom: 1px solid #495E57;
+    height: 30px;
+    opacity: 1;
+  }
+  .dropdown .dropdownItem {
+    height: 0;
+    transition: all 0.5s;
+    border: -1px solid #495E57;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    box-sizing: border-box;
+    width: 100%;
+    visibility: hidden;
+  }
+  .dropdown .dropdownItem:hover {
+    background-color: #495E57;
+    color: #F4CE14;
+  }
+}
+@media (min-width: 1000px) {
+  .linkWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 75px;
+    flex: 1;
+  }
+  .dropdown {
+    display: none;
+  }
+}/*# sourceMappingURL=Toolbar.css.map */

@@ -4,25 +4,26 @@ import basketImage from "./assets/Basket.svg";
 import greekSaladImg from "./assets/greek salad-min.jpg";
 import bruchettaImg from "./assets/bruchetta-min.png";
 import lemonDessertImg from "./assets/lemon dessert.jpg";
-import whiteLogo from "./assets/whiteLogo.png";
+
 import testimonial1 from "./assets/portrait1.jpg";
 import testimonial2 from "./assets/portrait2.jpg";
 import testimonial3 from "./assets/portrait3.jpg";
 import testimonial4 from "./assets/portrait5.jpg";
 import chefImg1 from "./assets/restaurant chef B-min.jpg";
 import chefImg2 from "./assets/Mario and Adrian b-min.jpg";
-import toolbarLogo from "./assets/Logo.svg";
 import { useEffect, useRef, useState  } from 'react';
-import {BrowserRouter, Routes, Route, NavLink} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {HashLink} from "react-router-hash-link";
 import Reservations from "./Reservations";
 import React from "react";
+import ReservationConfirmation from './ReservationConfirmation';
+import {Toolbar} from "./Toolbar";
+import {Footer} from "./Footer";
 
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="littleLemon">
         <Toolbar>
           {toolbarItems.map(item => <HashLink to={item.href} key={item.name}>{item.name}</HashLink>)}
         </Toolbar>
@@ -34,11 +35,10 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/home" element={<Home/>} />
             <Route path="/reservations" element={<Reservations/>}/>
-
+            <Route path="/reservationConfirmation" element={<ReservationConfirmation/>}/>
           </Routes>
         </main>
         <Footer/>
-      </div>
     </BrowserRouter>
   );
 }
@@ -58,41 +58,18 @@ const Home = () => {
 }
 
 
-const Toolbar = (props) => {
-  return (
-    <header className="backgroundBanner toolbar">
-      <div className="content" style={{display: "flex"}}>
-        <div style={{flex: 0, marginRight: 150}}>
-          <HashLink to="/">
-            <img src={toolbarLogo} height={50}/>
-          </HashLink>
-          
-        </div>
-        <div style={{flex: 1, display: "flex", justifyContent:"space-between", alignItems: "center"}}>
-          {React.Children.map(props.children, child => {
-            return React.cloneElement(child, {
-              className: "toolbarLink cta primaryGreen text"
-            })
-          })}
-        </div>
-      </div>
-    </header>
-  )
-}
-
-
 const HeroSection = () =>{
   return (
-    <section className="primaryGreen backgroundBanner background" id="heroSection">
-        <div className="content standardTopMargin" style={{display: "flex"}}>
+    <section className="primaryGreen backgroundBanner background" id="heroSection" style={{marginBottom: 70}}>
+        <div className="content contentStack" style={{ transform: "translateY(70px)"}}>
           <div style={{flex: 1}}>
             <h1 className="primaryYellow text">Little Lemon</h1>
-            <h2 className="highlightWhite text" style={{marginTop: "-70px"}}>Chicago</h2>
-            <p className="highlightWhite text" style={{maxWidth: "420px"}}>
+            <h2 className="highlightWhite text" style={{marginTop: "-10px"}}>Chicago</h2>
+            <p className="highlightWhite text">
               We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
             </p>
           </div>
-          <img src={heroImage} alt="4 pieces of bread topped with sauce and vegetables on a stone platter" height="400px" className="shadow" style={{aspectRatio: "1/1", transform: "translateY(70px)", borderRadius: "16px"}}/>
+          <img src={heroImage} alt="4 pieces of bread topped with sauce and vegetables on a stone platter" height="400px" className="shadow" style={{aspectRatio: "1/1", borderRadius: "16px", objectFit: "cover"}}/>
         </div>
       </section>
   )
@@ -103,11 +80,11 @@ const SpecialsSection = () =>
   return (
     <section className="backgroundBanner" id="menuSection">
       <div className="content standardTopMargin" style={{marginBottom:75}}>
-        <div style={{display: "flex", alignItems: "center"}}>
+        <div style={{ alignItems: "center"}} className="contentStack">
           <h1 style={{flex: 1}}> This week's specials!</h1>
           <Button width={210} height={48} text="Online Menu"/>
         </div>
-        <div style={{display: "flex", flexWrap: "wrap"}} className="cardList">
+        <div style={{flexWrap: "wrap", marginTop: 50}} className="cardList">
           {foodCards.map(item => <FoodCard {...item} key={item.title} style={{maxWidth: "300px", flexShrink: 0}}/>)}
         </div>
       </div>
@@ -120,13 +97,13 @@ const SpecialsSection = () =>
 const Button = ({width, height, text}) =>
 {
   return (
-    <div className="primaryYellow background" style={{borderRadius: "16px", display: "flex", justifyContent: "center", alignItems:"center", height: height +"px", width: width + "px", cursor: "pointer"}}>
+    <div className="primaryYellow background button" style={{borderRadius: "16px", display: "flex", justifyContent: "center", alignItems:"center", height: height +"px", width: width + "px", cursor: "pointer"}}>
       <span className="cta">
         {text}
       </span>
     </div>
   )
-}
+};
 
 const FoodCard = ({title, text, price, imgSrc, style}) =>
 {
@@ -164,7 +141,7 @@ const TestimonialsSection = () =>
   {
     const width = containerRef.current.clientWidth - (3 * listGap) - 20;
 
-    setCardWidth(width / 4);
+    setCardWidth(Math.max(230, width / 4));
   },[]);
 
   return (
@@ -231,10 +208,10 @@ const AboutSection = () =>
 {
   return (
     <section className="backgroundBanner" id="aboutSection">
-      <div className="content standardTopMargin" style={{display: "flex", minHeight: 700, gap: 40}}>
-        <div style={{flex: 1, maxWidth: "40%"}}>
+      <div className="content standardTopMargin contentStack" style={{gap: 40}}>
+        <div style={{flex: 1}}>
           <h1 className="primaryYellow text">Little Lemon</h1>
-          <h2 className="primaryGreen text" style={{marginTop: -70}}>Chicago</h2>
+          <h2 className="primaryGreen text" style={{marginTop: -10}}>Chicago</h2>
           <p>
             Founded in 1930, we are on of Chicago's oldest Mediterranean restaurants. 
             Our founder, Ophelia Stephanopoulos, grew up in Greece, on the shores of the Mediterranean.
@@ -245,45 +222,17 @@ const AboutSection = () =>
             renovation in 1996.
           </p>
         </div>
-        <div style={{flex:1, position: "relative", display: "flex"}}>
-        <div style={{position: "relative", borderRadius: 16, overflow: "hidden", width: 300, height: 300, transform: "translateY(300px) translateX(300px)"}} className="shadow">
+        <div style={{flex:1, position: "relative"}}>
+        <div style={{position: "relative", borderRadius: 16, overflow: "hidden", width: "50%", aspectRatio:"1/1", transform: "translateY(60%) translateX(90%)"}} className="shadow">
             <img src={chefImg2} height="100%" style={{right: 0, position: "absolute"}}/>
         </div> 
-        <div style={{position: "relative", borderRadius: 16, overflow:"hidden", width: 300, height: 400, transform: "translateX(-250px) translateY(50px)"}} className="shadow">
-          <img src={chefImg1} height="100%"  style={{right: -200, position: "absolute"}}/>
+        <div style={{position: "relative", borderRadius: 16, overflow:"hidden", width: "50%",  aspectRatio:"1/1", transform: "translateY(-100%) translateX(10%)"}} className="shadow">
+          <img src={chefImg1} height="100%"  style={{transform: "translateX(-50%)", left: "50%", position: "absolute"}}/>
         </div>     
           
         </div>
       </div>
     </section>
-  )
-};
-
-const Footer = () => 
-{
-  return (
-    <footer className="backgroundBanner primaryGreen background">
-      <div className="content" style={{display: "flex", padding: "10px 0px", justifyContent: "space-between"}}>
-        <div><img src={whiteLogo} height="200"/></div>
-        <LinkList header="Navigation" links={navigationItems}/>
-        <LinkList header="Contact Us" links={contactItems}/>
-        <LinkList header="Social Media" links={socialItems}/>
-      </div>
-    </footer>
-  );
-};
-
-const LinkList = ({header, links}) =>
-{
-  return (
-    <div>
-      <span className="sectionTitle">
-        {header}
-      </span>
-      <nav style={{display: "flex", flexDirection: "column", paddingLeft: "5px"}}>
-        {links.map(link => <NavLink className="secondaryPink text cardTitle" key={link.name} to={link.link} style={{lineHeight: "130%"}}>{link.name}</NavLink>)}
-      </nav>
-    </div>
   )
 };
 
@@ -315,62 +264,7 @@ const toolbarItems = [
 ];
 
 
-const navigationItems = [
-  {
-    name: "Home",
-    link: "/#heroSection"
-  },
-  {
-    name: "About",
-    link: "/#aboutSection"
-  },
-  {
-    name: "Menu",
-    link: "/#menuSection"
-  },
-  {
-    name: "Reservations",
-    link: "/reservations"
-  },
-  {
-    name: "Order Online",
-    link: "/#menuSection"
-  },
-  {
-    name: "Login",
-    link: "/"
-  },
-];
 
-const contactItems = [
-  {
-    name: "lilLemonChicago@sundial.com",
-    link: ""
-  },
-  {
-    name: "(123) 456-7890)",
-    link: ""
-  }
-];
-
-const socialItems = [
-  {
-    name: "Facebook",
-    link: "https://www.facebook.com"
-  },
-  {
-    name: "Instagram",
-    link: "https://www.instagram.com"
-  },
-  {
-    name: "Twitter",
-    link: "https://www.twitter.com"
-  },
-  {
-    name: "MySpace",
-    link: "https://www.myspace.com"
-  }
-];
 
 const foodCards = [
   {

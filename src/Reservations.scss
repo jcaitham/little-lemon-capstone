@@ -2,12 +2,97 @@
 
 .reservationsCard{
 
-    margin: 50px;
+    width: 100%;
+    margin-bottom: 50px;
     border-radius: 16px;
-    padding: 20px;
+    box-sizing: border-box;
+    padding: 0px 20px 20px 20px;
+
+    h2{
+        margin: 0px;
+    }
+
+    .tabRow{
+        display: flex;
+
+        .tab{
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+
+            &.inactive{
+                border: 1px solid #F4CE14;
+            }
+
+            &.active{
+            }
+
+            &.noClick{
+                pointer-events: none;
+            }
+
+            &.clickable{
+                cursor: pointer;
+            }
+        }
+    }
+
+    .errorMessage{
+        margin-top: 5px;
+        padding-left: 20px;
+        display: block;
+    }
+
+    .timeResult{
+        border-radius: 8px;
+        padding: 5px 20px;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover{
+            transform: translate(2px, 2px);
+        }
+    }
+
+    .submitButton{
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 16px;
+        margin-top: 20px;
+        
+        
+
+       
+
+        &.active{
+
+            cursor: pointer;
+
+            &:hover{
+                transform: translate(2px, 2px);
+            }
+
+            &:active{
+                box-shadow: none;
+                transform: translateY(2px) translateX(2px);
+            }
+
+        }
+
+        &.inactive{
+            opacity: .5;
+        }
+
+    }
 
     .entryField{
         width: 100%;
+        margin-top: 15px;
         .caption{
             width: 100%;
             margin-bottom: 10px;
@@ -22,6 +107,11 @@
             color: inherit;
             padding: 0px 20px;
             box-sizing: border-box;
+
+            &::placeholder{
+                font-style: italic;
+                padding-left: 5px;
+            }
 
 
 

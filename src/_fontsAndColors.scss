@@ -1,22 +1,24 @@
+@use "./colorVariables";
+
 .primaryGreen
 {
     &.background{
-        background-color: #495E57;
+        background-color: colorVariables.$primaryGreen;
     }
 
     &.text{
-        color: #495E57;
+        color: colorVariables.$primaryGreen;
     }
 }
 
 .primaryYellow
 {
     &.background{
-        background-color: #F4CE14;
+        background-color: colorVariables.$primaryYellow;
     }
 
     &.text{
-        color: #F4CE14;
+        color: colorVariables.$primaryYellow;
     }
 }
 
@@ -24,22 +26,22 @@
 {
     
     &.background{
-        background-color: #EDEFEE;
+        background-color: colorVariables.$highlightWhite;
     }
 
     &.text{
-        color: #EDEFEE;
+        color: colorVariables.$highlightWhite;
     }
 }
 
 .secondaryOrange
 {
     &.background{
-        background-color: #EE9972;
+        background-color: colorVariables.$secondaryOrange;
     }
 
     &.text{
-        color: #EE9972;
+        color: colorVariables.$secondaryOrange;
     }
 }
 
@@ -47,15 +49,15 @@
 {
     
     &.background{
-        background-color: #FBDABB;
+        background-color: colorVariables.$secondaryPink;
     }
 
     &.text{
-        color: #FBDABB;
+        color: colorVariables.$secondaryPink;
     }
 }
 
-p
+p, q
 {
     font-family: "Karla", Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -67,9 +69,10 @@ h1
     font-family: 'Markazi Text', 'Times New Roman', Times, serif;
     font-weight: 500;
     font-size: 64px;
+    margin:0px;
 }
 
-h2
+h2, .headerMedium
 {
     font-family: 'Markazi Text', 'Times New Roman', Times, serif;
     font-weight: 400;
