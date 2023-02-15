@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "yup-phone-lite";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 import { fetchAPI, submitAPI } from "./api/api.js";
 
@@ -77,10 +78,16 @@ const Reservations = () =>
 								return (
 									<Form>
 										<EntryField caption="Date" ghostText={new Date().getDate().toString()} type="date" formikStuff={props.getFieldProps("date")} onChange={(e) => { props.setFieldValue("time", -1); setAvailableTimes(loadListOfTimes(e.currentTarget.value)); }} />
-										<OptionDropdown caption="Time" ghostText="Choose a time" options={timeOptionsList} formikStuff={props.getFieldProps("time")} />
-										<OptionDropdown caption="Party Size" ghostText="How many people in your group?" options={partySizeOptions} formikStuff={props.getFieldProps("partySize")} />
-										<OptionDropdown caption="Occasion" ghostText="What is your occasion?" options={occasionOptions} formikStuff={props.getFieldProps("occasion")} />
-										<button aria-label="Click to continue with your reservation" type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Continue</span></button>
+										<OptionDropdown caption="Time" ghostText="Choose a time" formikStuff={props.getFieldProps("time")}>
+											{timeOptionsList}
+										</OptionDropdown>
+										<OptionDropdown caption="Party Size" ghostText="How many people in your group?" formikStuff={props.getFieldProps("partySize")} >
+											{partySizeOptions}
+										</OptionDropdown>
+										<OptionDropdown caption="Occasion" ghostText="What is your occasion?" options={occasionOptions} formikStuff={props.getFieldProps("occasion")} >
+											{occasionOptions}
+										</OptionDropdown>
+										<button id="page1Submit" aria-label="Click to continue with your reservation" type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Continue</span></button>
 									</Form>
 								);
 							}}
@@ -99,7 +106,7 @@ const Reservations = () =>
 									<EntryField caption="Name" ghostText={"Jane Doe"} type="text" formikStuff={props.getFieldProps("name")} />
 									<EntryField caption="E-mail" ghostText="jane@example.com" type="email" formikStuff={props.getFieldProps("email")} />
 									<EntryField caption="Phone" ghostText="Phone Number" type="tel" formikStuff={props.getFieldProps("phone")} />
-									<button aria-label="Click to submit and finalize your reservation" type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Confirm Reservation</span></button>
+									<button id="page2Submit" aria-label="Click to submit and finalize your reservation" type="submit" className={"submitButton primaryYellow background shadow " + (props.isValid ? "active" : "inactive")}><span className="headerMedium primaryGreen text">Confirm Reservation</span></button>
 								</Form>);
 							}}
 						</Formik>
@@ -139,7 +146,7 @@ const EntryField = ({ caption, ghostText, type, onChange, formikStuff }) =>
 					{caption}
 				</h2>
 			</label>
-			<Field type={type} min={type === "date" ? new Date().toLocaleDateString("en-CA") : undefined} placeholder={ghostText} className="highlightWhite background inputText" {...formikStuff} onChange={e => { formikStuff.onChange(e); onChange && onChange(e); }}></Field>
+			<Field type={type} id={formikStuff.name} min={type === "date" ? new Date().toLocaleDateString("en-CA") : undefined} placeholder={ghostText} className="highlightWhite background inputText" {...formikStuff} onChange={e => { formikStuff.onChange(e); onChange && onChange(e); }}></Field>
 			<span className="errorMessage cta secondaryOrange text">
 				<ErrorMessage name={formikStuff.name} />
 				&nbsp;
@@ -148,7 +155,7 @@ const EntryField = ({ caption, ghostText, type, onChange, formikStuff }) =>
 	);
 };
 
-const OptionDropdown = ({ caption, ghostText, options, formikStuff, onChange }) => 
+const OptionDropdown = ({ caption, ghostText, formikStuff, onChange, children }) => 
 {
 	return (
 		<div className="entryField">
@@ -157,9 +164,14 @@ const OptionDropdown = ({ caption, ghostText, options, formikStuff, onChange }) 
 					{caption}
 				</h2>
 			</label>
-			<Field component="select" {...formikStuff} className="highlightWhite background inputText" onChange={e => { formikStuff.onChange(e); onChange && onChange(); }}>
+			<Field component="select" id={formikStuff.name} {...formikStuff} className="highlightWhite background inputText" onChange={e => { formikStuff.onChange(e); onChange && onChange(); }}>
 				<option key={-1} value={-1} disabled>{ghostText}</option>
-				{options}
+				{React.Children.map(children, child =>
+				{
+					return React.cloneElement(child, {
+						datatestid: "select-option"
+					});
+				})}
 			</Field>
 			<span className="errorMessage cta secondaryOrange text">
 				<ErrorMessage name={formikStuff.name} />
