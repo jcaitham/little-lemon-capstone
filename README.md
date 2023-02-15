@@ -13,6 +13,10 @@ Most of the content is just fairly simple HTML/CSS, done in React, but there is 
 I enjoyed learning about React's useNavigate hook and how you can use it to transfer state to a new page, as well as the CSS object-fit property, which I had somehow never used before.  
 
 To run the page, you should use `git clone`, then run `npm install`, followed by `npm start`.  This should automatically launch you to `localhost:3000`, where you can view the webpage.  Or you can just go to [https://little-lemon.twoplustwoequalsfish.com](https://little-lemon.twoplustwoequalsfish.com).
+
+[Initial Figma mock-ups](https://www.figma.com/file/CYsnwimYN1selW4qlzGjWM/LittleLemonCapstone?node-id=6%3A974&t=otWXEuxpCEXvUnsF-1)
+
+[Heuristic Eval](https://docs.google.com/spreadsheets/d/1KEO1alQq31WVLrEfWU1njqxDemSbpgYf/edit?usp=sharing&ouid=102099214569864143891&rtpof=true&sd=true)
  
 
 
