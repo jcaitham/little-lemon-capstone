@@ -5,7 +5,7 @@ This is my capstone project for Meta's React Front-End Developer course/certific
 Most of the content is just fairly simple HTML/CSS, done in React, but there is also 
 
  - Form validation and custom form elements
- - Simple front-end controls, such as a slideshow-esque tool
+ - Simple front-end controls, such as drop downs and a "slideshow"
  - Responsive design, especially for the header & footer
  - Accessibility
  - Simple unit testing for the reservations form
