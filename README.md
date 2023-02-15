@@ -1,3 +1,22 @@
+# React Certificate Capstone project
+
+This is my capstone project for Meta's React Front-End Developer course/certificate, offered through Coursera.  It is a partial front-end for a fictional restaurant called Little Lemon.  Theming, images, and design were mostly provided or at least inspired by the course materials, but the code itself was done entirely by hand.  
+
+Most of the content is just fairly simple HTML/CSS, done in React, but there is also 
+
+ - Form validation and custom form elements
+ - Simple front-end controls, such as a slideshow-esque tool
+ - Responsive design, especially for the header & footer
+ - Accessibility
+ - Simple unit testing for the reservations form
+ 
+I enjoyed learning about React's useNavigate hook and how you can use it to transfer state to a new page, as well as the CSS object-fit property, which I had somehow never used before.  
+
+To run the page, you should use `git clone`, then run `npm install`, followed by `npm start`.  This should automatically launch you to `localhost:3000`, where you can view the webpage.  Or you can just go to [https://little-lemon.twoplustwoequalsfish.com](https://little-lemon.twoplustwoequalsfish.com).
+ 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
