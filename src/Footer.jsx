@@ -11,10 +11,10 @@ export const Footer = () =>
 		<footer className="backgroundBanner primaryGreen background">
 			<div className="content footerWrapper">
 				<div className="desktopImg">
-					<img src={whiteLogo} height="200" />
+					<img src={whiteLogo} height="200" alt="The Little Lemon logo" />
 				</div>
 				<div className="mobileImg">
-					<img src={mobileLogo} width="100%" />
+					<img src={mobileLogo} width="100%" alt="The Little Lemon logo" />
 				</div>
 				<LinkList header="Navigation" links={navigationItems} />
 				<LinkList header="Contact Us" links={contactItems} />
